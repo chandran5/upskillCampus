@@ -1,0 +1,64 @@
+// Define pin numbers for the traffic lights
+int road1[] = {13, 12, 11}; // Lane 1: Red, Yellow, Green
+int road2[] = {10, 9, 8}; // Lane 2: Red, Yellow, Green
+int road3[] = {7, 6, 5}; // Lane 3: Red, Yellow, Green
+int road4[] = {4, 3, 2}; // Lane 4: Red, Yellow, Green
+void setup() {
+// Initialize all pins as OUTPUT
+for (int i = 0; i < 3; i++) {
+pinMode(road1[i], OUTPUT);
+pinMode(road2[i], OUTPUT);
+pinMode(road3[i], OUTPUT);
+pinMode(road4[i], OUTPUT);
+}
+// Initially turn off all the lights
+for (int i = 0; i < 3; i++) {
+digitalWrite(road1[i], LOW);
+digitalWrite(road2[i], LOW);
+digitalWrite(road3[i], LOW);
+digitalWrite(road4[i], LOW);
+}
+}
+void loop() {
+// Lane 1 Green, Lanes 2, 3, 4 Red
+digitalWrite(road1[2], HIGH); // Lane 1 Green ON
+digitalWrite(road2[0], HIGH); // Lane 2 Red ON
+digitalWrite(road3[0], HIGH); // Lane 3 Red ON
+digitalWrite(road4[0], HIGH); // Lane 4 Red ON
+delay(7000); // Keep the lights in this state for 7 seconds
+// Lane 1 Yellow, Lanes 2, 3, 4 Red
+digitalWrite(road1[2], LOW); // Lane 1 Green OFF
+digitalWrite(road1[1], HIGH); // Lane 1 Yellow ON
+delay(3000); // Keep the lights in this state for 3 seconds
+// Lane 1 Red, Lane 3 Green, Lanes 2, 4 Red
+digitalWrite(road1[1], LOW); // Lane 1 Yellow OFF
+digitalWrite(road1[0], HIGH); // Lane 1 Red ON
+digitalWrite(road3[0], LOW); // Lane 3 Red OFF
+digitalWrite(road3[2], HIGH); // Lane 3 Green ON
+delay(7000); // Keep the lights in this state for 7 seconds
+// Lane 1 Red, Lane 3 Yellow, Lanes 2, 4 Red
+digitalWrite(road3[2], LOW); // Lane 3 Green OFF
+digitalWrite(road3[1], HIGH); // Lane 3 Yellow ON
+delay(3000); // Keep the lights in this state for 3 seconds
+// Repeat this process for Lane 2 and Lane 4
+// Lane 2 Green, Lanes 1, 3, 4 Red
+digitalWrite(road3[1], LOW); // Lane 3 Yellow OFF
+digitalWrite(road3[0], HIGH); // Lane 3 Red ON
+digitalWrite(road2[0], LOW); // Lane 2 Red OFF
+digitalWrite(road2[2], HIGH); // Lane 2 Green ON
+delay(7000); // Keep the lights in this state for 7 seconds
+// Lane 2 Yellow, Lanes 1, 3, 4 Red
+digitalWrite(road2[2], LOW); // Lane 2 Green OFF
+digitalWrite(road2[1], HIGH); // Lane 2 Yellow ON
+delay(3000); // Keep the lights in this state for 3 seconds
+// Lane 2 Red, Lane 4 Green, Lanes 1, 3 Red
+digitalWrite(road2[1], LOW); // Lane 2 Yellow OFF
+digitalWrite(road2[0], HIGH); // Lane 2 Red ON
+digitalWrite(road4[0], LOW); // Lane 4 Red OFF
+digitalWrite(road4[2], HIGH); // Lane 4 Green ON
+delay(7000); // Keep the lights in this state for 7 seconds
+// Lane 2 Red, Lane 4 Yellow, Lanes 1, 3 Red
+digitalWrite(road4[2], LOW); // Lane 4 Green OFF
+digitalWrite(road4[1], HIGH); // Lane 4 Yellow ON
+delay(3000); // Keep the lights in this state for 3 seconds
+}
